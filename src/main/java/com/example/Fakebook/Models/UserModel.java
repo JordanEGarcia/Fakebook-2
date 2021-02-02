@@ -1,8 +1,22 @@
-package com.example.Fakebook.User;
+package com.example.Fakebook.Models;
+import javax.persistence.*;
 import java.time.LocalDate;
 @SuppressWarnings("FieldCanBeLocal")
 
+@Entity
+@Table
 public class UserModel {
+    @Id
+    @SequenceGenerator(
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1
+
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
     private int Id;
     private String Username;
     private String FirstName;
