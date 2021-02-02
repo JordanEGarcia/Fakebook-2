@@ -3,22 +3,25 @@ package com.example.Fakebook.Models;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
+@Entity(name = "Posts")
 @Table
-public class Post {
+public class PostModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String content;
     private LocalDate date;
-    private int userId;
-    public Post() {}
+    private long userId;
+    public PostModel() { this.date = LocalDate.now(); }
 
-    public Post(String content) {
+    public PostModel(long userid, String content) {
         this.content = content;
+        this.userId = userid;
         this.date = LocalDate.now();
+        
     }
 
-    public Post(long id, String content, LocalDate date) {
+    public PostModel(long id, String content, LocalDate date) {
         this.id = id;
         this.content = content;
         this.date = LocalDate.now();
@@ -42,5 +45,17 @@ public class Post {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }
